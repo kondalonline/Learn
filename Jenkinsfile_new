@@ -11,14 +11,24 @@ pipeline {
                 sh ' pwd '
             }
         }
-        stage('terraform init') {
-            steps {
-                sh 'terraform init'
-            }
+          stage('TF Plan') {
+       steps {
+           sh 'terraform init'
+           sh 'terraform plan -out myplan'
+       }
+     }
+        stage('Approval') {
+      steps {
+        script {
+          def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
         }
+      }
+    }
+    
+
         stage('terraform apply') {
             steps{
-                sh 'terraform apply'
+                sh 'terraform apply -input=false myplan'
             }
         }
 
