@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('git checkout'){
             steps {
-                git changelog: false, credentialsId: '4e103e68-1057-4f9a-af49-04400d98fc71', poll: false, url: 'https://github.com/kondalonline/Learn'
+                git credentialsId: '974adeae-bb15-45f2-900a-da1f0d34d03c', url: 'https://github.com/kondalonline/Learn'
             }
         }
         stage('terraform init') {
