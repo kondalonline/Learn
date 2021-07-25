@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    tools {
+        terraform 'terraform'
+    }
+    stages {
+        stage ('git checkout'){
+            steps {
+                echo 'checked out"
+                sh ' ls -ltr '
+                sh ' pwd '
+            }
+        }
+        stage('terraform init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage('terraform apply') {
+            steps{
+                sh 'terraform apply'
+            }
+        }
+
+    }
+}
