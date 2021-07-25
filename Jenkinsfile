@@ -1,20 +1,22 @@
 pipeline {
-    agent none
+    agent any
+    tools {
+        terraform 'terraform'
+    }
     stages {
-        stage('build') {
+        stage ('git checkout'){
+            git changelog: false, credentialsId: '4e103e68-1057-4f9a-af49-04400d98fc71', poll: false, url: 'https://github.com/kondalonline/Learn'
+        }
+        stage('terraform init') {
             steps {
-                echo 'building ..'
+                sh 'terraform init'
             }
         }
-        stage('test') {
+        stage('terraform apply') {
             steps{
-                echo 'running tests..'
+                sh 'terraform apply'
             }
         }
-        stage('deploy') {
-            steps{
-                echo 'deploying app..'
-            }
-        }
+
     }
 }
