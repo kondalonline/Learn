@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('git checkout'){
             steps {
-                echo 'checked out"
+                echo 'checked out'
                 sh ' ls -ltr '
                 sh ' pwd '
             }
