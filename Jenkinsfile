@@ -7,6 +7,9 @@ pipeline {
                 sh 'echo "this is step 2" '
                 sh ''' 
                     echo " step 3"
+                    pwd
+                    hostname
+                    uname -a
                     ls -ltr
                     echo " build completed "
                 '''
