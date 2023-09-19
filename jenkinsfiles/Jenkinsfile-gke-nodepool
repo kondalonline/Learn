@@ -1,0 +1,31 @@
+
+void sayHello(){
+	
+	echo "Hello"
+}
+
+void createNodePool(){
+	echo "creating nodepool"
+}
+
+pipeline{
+	
+	agent any
+
+	stages{
+      stage(" git checkout "){
+        steps{
+
+          sayHello()
+        }
+
+        stage(){
+          steps{
+            createNodePool()
+          }
+        }
+
+      }
+
+	}
+}
